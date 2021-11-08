@@ -1,32 +1,36 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <app-header :drawer="drawer" @drawer-event="handleDrawer" />
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <app-menu />
+    </v-navigation-drawer>
+
+    <v-main>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+    <v-footer color="secondary" dark> <div class="mx-auto">H.J.B</div></v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script>
+import AppHeader from "./components/AppHeader.vue";
+import AppMenu from "./components/AppMenu.vue";
+export default {
+  // 컴포넌트의 대표이름(devtools에 나오는 이름)
+  name: "App",
+  // 추가하고 싶은 컴포넌트 등록(import something from "/path")
+  components: { AppMenu, AppHeader },
+  // 컴포넌트 데이터 정의
+  data() {
+    return { drawer: false };
+  },
+  // 컴포넌트 메소드 정의
+  methods: {
+    handleDrawer() {
+      this.drawer = !this.drawer;
+    },
+  },
+};
+</script>
