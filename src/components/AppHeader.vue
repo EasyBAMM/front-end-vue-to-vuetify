@@ -2,11 +2,13 @@
 <template>
   <v-app-bar app hide-on-scroll>
     <v-app-bar-nav-icon @click.stop="handleDrawer"></v-app-bar-nav-icon>
-    <v-toolbar-title class="d-flex flex-row align-center">
-      <div>
-        <v-img :src="require('../assets/logo.svg')" contain width="30" height="30" />
-      </div>
-      <div>Vue to Vuetify</div>
+    <v-toolbar-title>
+      <router-link to="/" class="d-flex flex-row align-center black--text text-decoration-none">
+        <div>
+          <v-img :src="require('../assets/logo.svg')" contain width="30" height="30" />
+        </div>
+        <div>Vue to Vuetify</div>
+      </router-link>
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-btn
@@ -49,7 +51,10 @@ export default {
     handleDrawer() {
       // 이벤트 발생
       this.$emit("drawer-event");
-    }
+    },
+    handleLogout() {
+      this.$store.dispatch("deleteAuth");
+    },
   },
   props: ["drawer"],
 };

@@ -32,5 +32,8 @@ export default {
       this.drawer = !this.drawer;
     },
   },
+  created() {
+    this.$store.dispatch("loadAuth");
+  }
 };
 </script>

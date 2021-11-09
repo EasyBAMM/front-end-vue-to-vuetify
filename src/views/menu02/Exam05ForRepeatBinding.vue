@@ -1,8 +1,8 @@
 <!-- 컴포넌트 UI 정의 -->
 <template>
-  <div class="card">
-    <div class="card-header">Exam05ForRepeatBinding</div>
-    <div class="card-body">
+  <v-card>
+    <v-card-title>Exam05ForRepeatBinding</v-card-title>
+    <v-card-text>
       <h6>범위 반복</h6>
       <span v-for="n in 10" :key="n" class="mr-2">
         <img :src="require(`@/assets/photos/photo${n}.jpg`)" v-if="n % 2 === 0" height="150px" />
@@ -14,31 +14,17 @@
           <img :src="require(`@/assets/photos/${photo}`)" height="150px" />
         </span>
       </div>
-
       <hr />
       <h6>객체 배열 항목 반복</h6>
-      <div>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Title</th>
-              <th>Writer</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="board in boards" :key="board.bno">
-              <td>{{ board.bno }}</td>
-              <td>{{ board.btitle }}</td>
-              <td>{{ board.bwriter }}</td>
-              <td>{{ board.bdate }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+
+      <v-data-table
+        :headers="headers"
+        :items="boards"
+        :items-per-page="5"
+        class="elevation-1"
+      ></v-data-table>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -54,6 +40,7 @@ export default {
   data() {
     return {
       photos: photoData.photos,
+      headers: boardData.boardTitle,
       boards: boardData.boards,
       board: boardData.board,
     };

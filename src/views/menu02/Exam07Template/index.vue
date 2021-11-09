@@ -1,21 +1,30 @@
 <!-- 컴포넌트 UI 정의 -->
 <template>
-  <div class="card">
-    <div class="card-header">Exam07Template</div>
-    <div class="card-body">
-      <button class="btn btn-info btn-sm mr-2" @click="showModalDialogTemplate = true">
-        Show ModalDialogTemplate
-      </button>
-      <button class="btn btn-info btn-sm mr-2" @click="showDialogA = true">Show DialogA</button>
-      <button class="btn btn-info btn-sm mr-2" @click="showDialogB = true">Show DialogB</button>
-    </div>
-    <modal-dialog-template
-      v-if="showModalDialogTemplate"
+<v-card>
+    <v-card-title>Exam07Template</v-card-title>
+    <v-card-text>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="primary"
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          Open Dialog
+        </v-btn>
+      </template>
+      <v-btn @click="showModalDialogTemplate = true" small class="mr-2 white--text" color="#2196F3">Show ModalDialogTemplate</v-btn>
+      <v-btn @click="showDialogA = true" small class="mr-2 white--text" color="#2196F3">Show DialogA</v-btn>
+      <v-btn @click="showDialogB = true" small class="mr-2 white--text" color="#2196F3">Show DialogB</v-btn>
+    </v-card-text>
+    <modal-dialog-template 
+    v-if="showModalDialogTemplate"
+    :dialog="showModalDialogTemplate"
       @close="showModalDialogTemplate = false"
     />
-    <dialog-a v-if="showDialogA" @close="showDialogA = false" />
-    <dialog-b v-if="showDialogB" @close="showDialogB = fasle" />
-  </div>
+    <dialog-a v-if="showDialogA" :dialog="showDialogA" @close="showDialogA = false" />
+    <dialog-b v-if="showDialogB" :dialog="showDialogB" @close="showDialogB = false" />
+  </v-card>
 </template>
 
 <script>

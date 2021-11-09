@@ -1,17 +1,20 @@
 <!-- 컴포넌트 UI 정의 -->
 <template>
-  <div class="card">
-    <div class="card-header">Exam06ComputedBinding</div>
-    <div class="card-body">
+  <v-card>
+    <v-card-title>Exam06ComputedBinding</v-card-title>
+    <v-card-text>
       <p>ssn1: {{ ssn1 }}</p>
       <p>ssn2: {{ ssn2 }}</p>
       <p>date: {{ date }}</p>
       <p>ssn: {{ ssn1 }}-{{ ssn2.charAt(0) + "******" }}</p>
       <p>ssn: {{ getSsn() }}</p>
       <p>ssn: {{ computedSsn }}</p>
-      <button class="btn btn-info btn-sm mt-2" @click="changeDate()">변경</button>
-    </div>
-  </div>
+    </v-card-text>
+    <v-divider />
+    <v-card-actions>
+      <v-btn @click="changeDate()" small class="mr-2 white--text" color="#2196F3">변경</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>

@@ -1,34 +1,17 @@
 <!-- 컴포넌트 UI 정의 -->
 <template>
-  <modal-dialog-template>
+  <modal-dialog-template :dialog="dialog">
     <template v-slot:header> 로그인 </template>
     <template v-slot:body>
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            aria-describedby="emailHelp"
-            autocomplete="email"
-          />
-          <small id="emailHelp" class="form-text text-muted"
-            >We'll never share your email with anyone else.</small
-          >
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" autocomplete="new-password" />
-        </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" />
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-      </form>
+      <v-form v-on:submit.prevent="handleSubmit" ref="form" v-model="valid" lazy-validation>
+        <v-text-field label="Email address" required></v-text-field>
+        <v-text-field label="Password" required></v-text-field>
+        <v-checkbox label="Check me out" value="Check me out"></v-checkbox>
+      </v-form>
     </template>
     <template v-slot:footer>
-      <button class="btn btn-info btn-sm" @click="$emit('close')">로그인</button>
-      <button class="btn btn-info btn-sm" @click="$emit('close')">취소</button>
+      <v-btn @click="$emit('close')" small class="mr-2 white--text" color="#2196F3">로그인 </v-btn>
+      <v-btn @click="$emit('close')" small class="mr-2 white--text" color="#2196F3">취소</v-btn>
     </template>
   </modal-dialog-template>
 </template>
@@ -46,6 +29,7 @@ export default {
   },
   // 컴포넌트 메소드 정의
   methods: {},
+  props: ["dialog"],
 };
 </script>
 
